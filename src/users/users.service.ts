@@ -17,19 +17,19 @@ export class UsersService {
         return newUser.save();
     }
 
-    findAll() {
-        return `This action returns all users`;
+    async findAll(): Promise<User[]> {
+        return this.userModel.find();
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} user`;
+    findOne(id: string) {
+        return this.userModel.find({email: id});
     }
 
-    update(id: number, updateUserDto: UpdateUserDto) {
-        return `This action updates a #${id} user`;
+    update(id: string, updateUserDto: UpdateUserDto) {
+        return this.userModel.updateOne({email: id}, {"$set": updateUserDto});
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} user`;
+    remove(id: string) {
+        return this.userModel.deleteOne({email: id});
     }
 }
