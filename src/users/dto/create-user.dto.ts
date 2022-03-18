@@ -1,14 +1,4 @@
-import {
-    ArrayNotEmpty,
-    IsArray,
-    IsBoolean,
-    IsDate,
-    IsNotEmpty,
-    IsNotEmptyObject,
-    IsOptional,
-    MaxLength,
-    MinLength
-} from "class-validator";
+import {ArrayNotEmpty, IsArray, IsBoolean, IsDate, IsNotEmpty, MaxLength, MinLength} from "class-validator";
 
 enum RoleEnum {
     Admin = "Admin",
@@ -22,7 +12,7 @@ class CreateUserDto {
 
     @IsNotEmpty()
     @MinLength(4)
-    @MaxLength(32)
+    @MaxLength(16)
     password: string;
 
     @IsDate()
@@ -35,6 +25,10 @@ class CreateUserDto {
     @IsBoolean()
     @IsNotEmpty()
     isEnabled: boolean = true
+
+    constructor(values: object = {}) {
+        Object.assign(this as CreateUserDto, values);
+    }
 }
 
 export {CreateUserDto, RoleEnum}
