@@ -16,7 +16,7 @@ export class UsersService {
         if (await this.userModel.exists({username: createUserDto.username})) {
             throw new DuplicateIdentifierException(`The email ${createUserDto.username} already exists.`);
         }
-
+        
         let newUser = new this.userModel(createUserDto);
         newUser.password = await bcrypt.hash(newUser.password, 10);
         return newUser.save();

@@ -19,13 +19,13 @@ export class User {
     @Prop({required: true})
     password: string;
 
-    @Prop({default: new Date()})
+    @Prop()
     createdOn: Date;
 
-    @Prop({required: true, default: [RoleEnum.User]})
+    @Prop()
     roles: RoleEnum[];
 
-    @Prop({required: true, default: true})
+    @Prop()
     isEnabled: boolean
 }
 
