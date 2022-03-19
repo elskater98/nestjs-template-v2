@@ -4,11 +4,17 @@ import {RoleEnum} from "../dto/create-user.dto";
 
 export type UserDocument = User & Document;
 
-@Schema()
+@Schema({
+    toJSON: {
+        transform: function (doc, ret) {
+            delete ret.password;
+        }
+    }
+})
 export class User {
 
     @Prop({required: true})
-    email: string;
+    username: string;
 
     @Prop({required: true})
     password: string;

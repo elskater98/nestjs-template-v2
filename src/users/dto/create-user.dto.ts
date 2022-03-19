@@ -1,4 +1,4 @@
-import {ArrayNotEmpty, IsArray, IsBoolean, IsDate, IsEmail, IsNotEmpty, MaxLength, MinLength} from "class-validator";
+import {IsArray, IsBoolean, IsDate, IsEmail, IsNotEmpty, MaxLength, MinLength} from "class-validator";
 
 enum RoleEnum {
     Admin = "Admin",
@@ -9,7 +9,7 @@ enum RoleEnum {
 class CreateUserDto {
     @IsNotEmpty()
     @IsEmail()
-    email: string;
+    username: string;
 
     @IsNotEmpty()
     @MinLength(4)
@@ -20,11 +20,9 @@ class CreateUserDto {
     createdOn: Date = new Date()
 
     @IsArray()
-    @ArrayNotEmpty()
     roles: RoleEnum[] = [RoleEnum.User]
 
     @IsBoolean()
-    @IsNotEmpty()
     isEnabled: boolean = true
 
     constructor(values: object = {}) {

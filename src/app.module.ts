@@ -3,7 +3,10 @@ import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {MongooseModule} from "@nestjs/mongoose";
-import { UsersModule } from './users/users.module';
+import {UsersModule} from './users/users.module';
+import {AuthModule} from './auth/auth.module';
+import {AuthService} from './auth/auth.service';
+import {AuthController} from './auth/auth.controller';
 
 @Module({
     imports: [
@@ -13,11 +16,11 @@ import { UsersModule } from './users/users.module';
                 uri: configService.get<string>('MONGO_URI')
             })
         }),
-        UsersModule
-
+        UsersModule,
+        AuthModule
     ],
-    controllers: [AppController],
-    providers: [AppService],
+    controllers: [AppController, AuthController],
+    providers: [AppService, AuthService],
 })
 export class AppModule {
 }
