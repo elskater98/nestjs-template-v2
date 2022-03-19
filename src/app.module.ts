@@ -5,7 +5,6 @@ import {ConfigModule, ConfigService} from '@nestjs/config';
 import {MongooseModule} from "@nestjs/mongoose";
 import {UsersModule} from './users/users.module';
 import {AuthModule} from './auth/auth.module';
-import {AuthService} from './auth/auth.service';
 import {AuthController} from './auth/auth.controller';
 
 @Module({
@@ -20,7 +19,7 @@ import {AuthController} from './auth/auth.controller';
         AuthModule
     ],
     controllers: [AppController, AuthController],
-    providers: [AppService, AuthService],
+    providers: [AppService],
 })
 export class AppModule {
 }
